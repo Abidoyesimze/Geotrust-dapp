@@ -8,13 +8,14 @@ import OwnershipHistory from './components/OwnershipHistory';
 import Maps from './components/Maps';
 // import ExploreProperties from './components/Explore';
 import AdminDashboard from './components/Admindashboard';
-// import SellerDashboard from './components/Sellerdashboard';
+import SellerDashboard from './components/Sellerdashboard';
 // import UserDashboard from './components/Userdashboard';
-// import Notifications from './components/Notification';
-// import NotAuthorized from './components/Unauthorized';
+import Notifications from './components/Notification';
+
 // import DashboardOverview from './components/Dashboard';
-// import AddProperty from './components/AddProperty'; 
-// import FAQ from './components/Faq';
+import AddProperty from './components/AddProperty'; 
+import FAQ from './components/faq';
+import { PropertyRefreshProvider } from './components/PropertyRefresh';
 
 import '@rainbow-me/rainbowkit/styles.css';
 import {
@@ -49,6 +50,7 @@ function App() {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
+        <PropertyRefreshProvider>
       <Router>
         <Navbar>
           <Routes>
@@ -59,16 +61,17 @@ function App() {
             <Route path="/ownership-history" element={<OwnershipHistory />} /> 
               <Route path="/maps" element={<Maps />} /> 
              <Route path='/admin-dashboard' element={<AdminDashboard />} />
-            {/* <Route path='/seller-dashboard' element={<SellerDashboard />} />
-            <Route path='/user-dashboard' element={<UserDashboard />} />
+              <Route path='/seller-dashboard' element={<SellerDashboard />} /> 
+            {/* <Route path='/user-dashboard' element={<UserDashboard />} /> */}
             <Route path="/notifications" element={<Notifications />} />
-            <Route path="/dashboard" element={<DashboardOverview />} />
-            <Route path="/property" element={<AddProperty />} />
+            {/* <Route path="/dashboard" element={<DashboardOverview />} /> */}
+            <Route path="/property" element={<AddProperty />} /> 
             <Route path="/faq" element={<FAQ />} />
-            <Route path="/explore" element={<ExploreProperties />} />  */} 
+            {/* <Route path="/explore" element={<ExploreProperties />} />  */}  
           </Routes>
         </Navbar>
       </Router> 
+      </PropertyRefreshProvider>
       </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>  

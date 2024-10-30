@@ -3,14 +3,13 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
-// Sample property data with coordinates
 const properties = [
   { id: 1, name: 'Luxury Villa', lat: 34.0522, lng: -118.2437, description: 'A beautiful luxury villa with ocean views.' },
   { id: 2, name: 'Cozy Cabin', lat: 34.0522, lng: -118.2537, description: 'A cozy cabin surrounded by nature.' },
   { id: 3, name: 'Modern Apartment', lat: 34.0622, lng: -118.2637, description: 'A stylish apartment in the city center.' },
 ];
 
-// Fix for marker icons
+
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://unpkg.com/leaflet/dist/images/marker-icon-2x.png',

@@ -4,22 +4,35 @@ import { formatEther, parseEther } from 'viem';
 import CustomModal from './customModal';
 import { GeotrustContract } from '../Constant';
 import { toast } from 'react-toastify';
+import { usePropertyRefresh } from './PropertyRefresh';
 
 const PropertyListing = () => {
   const [properties, setProperties] = useState([]);
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [showImageModal, setShowImageModal] = useState(false);
+  const {refreshTrigger} = usePropertyRefresh();
   
   const { address } = useAccount();
   const { writeAsync: buyLand } = useWriteContract();
 
-  const { data: registeredData, error, isLoading } = useReadContract({
+  const { data: registeredData, propertiesData, refetch, error, isLoading } = useReadContract({
     address: GeotrustContract.address,
     abi: GeotrustContract.abi,
     functionName: 'getAllRegisteredLands', // Function to get all registered lands
+    watch: true,
     args: [],
   });
   
+  useEffect(() => {
+    refetch();
+  }, [refreshTrigger, refetch]);
+
+  useEffect(() => {
+    if (propertiesData) {
+      setProperties(propertiesData);
+    }
+  }, [propertiesData]);
+
   useEffect(() => {
     if (registeredData) {
       setProperties(registeredData);
