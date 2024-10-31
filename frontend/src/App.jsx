@@ -6,13 +6,13 @@ import PropertyListings from './components/PropertyListings';
 import Transactions from './components/Transactions';
 import OwnershipHistory from './components/OwnershipHistory';
 import Maps from './components/Maps';
-// import ExploreProperties from './components/Explore';
+ import Properties from './components/Properties';
 import AdminDashboard from './components/Admindashboard';
 import SellerDashboard from './components/Sellerdashboard';
 // import UserDashboard from './components/Userdashboard';
 import Notifications from './components/Notification';
 
-// import DashboardOverview from './components/Dashboard';
+ import Overview from './components/Overview';
 import AddProperty from './components/AddProperty'; 
 import FAQ from './components/faq';
 import { PropertyRefreshProvider } from './components/PropertyRefresh';
@@ -64,10 +64,10 @@ function App() {
               <Route path='/seller-dashboard' element={<SellerDashboard />} /> 
             {/* <Route path='/user-dashboard' element={<UserDashboard />} /> */}
             <Route path="/notifications" element={<Notifications />} />
-            {/* <Route path="/dashboard" element={<DashboardOverview />} /> */}
+            <Route path="/dashboard" element={<Overview />} /> 
             <Route path="/property" element={<AddProperty />} /> 
             <Route path="/faq" element={<FAQ />} />
-            {/* <Route path="/explore" element={<ExploreProperties />} />  */}  
+             <Route path="/properties" element={<Properties />} />   
           </Routes>
         </Navbar>
       </Router> 

@@ -102,8 +102,9 @@ const PropertyListing = () => {
   },[buylandError])
 
   return (
+    <>
+    <ToastContainer />
     <div className="property-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-      <ToastContainer />
       {properties.map((property, index) => (
       
         <div 
@@ -157,6 +158,7 @@ const PropertyListing = () => {
         )}
       </CustomModal>
     </div>
+    </>
   );
 };
 
