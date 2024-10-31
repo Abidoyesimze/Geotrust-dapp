@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
     <div className="min-h-screen bg-gray-100">
       <nav className="bg-gray-600 p-4">
         <div className="container mx-auto flex justify-between items-center">
-          <img src={logo} alt="GeoTrust Logo" className="h-14 w-50" />
+          <img src={logo} alt="GeoTrust Logo" className="h-20 w-20 rounded-full" />
           
           
           <button 
@@ -29,10 +29,10 @@ const Layout = ({ children }) => {
 
           
           <ul className="hidden lg:flex space-x-6 items-center">
-            <li><Link to="/" className="text-white hover:text-gray-200">Home</Link></li>
-            <li><Link to="/dashboard" className="text-white hover:text-gray-200">Overview</Link></li>
-            <li><Link to="/explore" className="text-white hover:text-gray-200">Explore Properties</Link></li>
-            <li><Link to="/faq" className="text-white hover:text-gray-200">FAQ</Link></li>
+            <li><Link to="/" className="text-white font-bold hover:text-gray-200">Home</Link></li>
+            <li><Link to="/dashboard" className="text-white font-bold hover:text-gray-200">Overview</Link></li>
+            <li><Link to="/properties" className="text-white font-bold hover:text-gray-200">Properties</Link></li>
+            <li><Link to="/faq" className="text-white font-bold hover:text-gray-200">FAQ</Link></li>
             <li className='text-white bg-slate-600'><ConnectButton /></li>
           </ul>
         </div>
@@ -41,10 +41,10 @@ const Layout = ({ children }) => {
         {isOpen && (
           <div className="lg:hidden">
             <ul className="space-y-2 bg-gray-600 p-4">
-              <li><Link to="/" className="block text-white hover:text-gray-200">Home</Link></li>
-              <li><Link to="/dashboard" className="block text-white hover:text-gray-200">Overview</Link></li>
-              <li><Link to="/explore" className="block text-white hover:text-gray-200">Explore Properties</Link></li>
-              <li><Link to="/faq" className="block text-white hover:text-gray-200">FAQ</Link></li>
+              <li><Link to="/" className="block text-white font-bold hover:text-gray-200">Home</Link></li>
+              <li><Link to="/dashboard" className="block text-white font-bold hover:text-gray-200">Overview</Link></li>
+              <li><Link to="/properties" className="block text-white font-bold hover:text-gray-200">Properties</Link></li>
+              <li><Link to="/faq" className="block text-white font-bold hover:text-gray-200">FAQ</Link></li>
               <li className='text-white bg-slate-600'><ConnectButton /></li>
             </ul>
           </div>
