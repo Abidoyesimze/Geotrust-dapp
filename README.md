@@ -20,33 +20,15 @@ Enable secure, fraud-resistant land transactions.
 Facilitate transparent and permanent ownership records.
 Improve accessibility for buyers, sellers, and land inspectors.
 Features
-Decentralized Ownership Records:
-
-Store land ownership records immutably on the blockchain.
-NFT-Based Property Tokens:
-
-Each land parcel is tokenized as an NFT (ERC721 standard) to uniquely represent ownership.
-Smart Contract Automation:
-
-Automates property transfer, ownership verification, and user role access.
-User Dashboards:
-
-Separate dashboards for Admin Only the assigned admin can have access to this dashboard, Seller, and User to manage their specific roles and data.
-Maps Integration:
-
-View properties on an interactive map to explore land locations.
-Notification System:
-
-Real-time updates for property listings, status changes, and transaction completion.
-Secure KYC and Access Control:
-
-Implements role-based access using OpenZeppelin’s access control for user verification.
-Comprehensive Ownership History:
-
-Track previous ownership details and transaction history for each property.
-Document Storage and property images with IPFS:
-
-Store property documents and property images securely on IPFS, allowing decentralized file management.
+Decentralized Ownership Records: Store land ownership records immutably on the blockchain.
+NFT-Based Property Tokens: Each land parcel is tokenized as an NFT (ERC721 standard) to uniquely represent ownership.
+Smart Contract Automation: Automates property transfer, ownership verification, and user role access.
+User Dashboards: Separate dashboards for Admin Only the assigned admin can have access to this dashboard, Seller, and User to manage their specific roles and data.
+Maps Integration: View properties on an interactive map to explore land locations.
+Notification System: Real-time updates for property listings, status changes, and transaction completion.
+Secure KYC and Access Control: Implements role-based access using OpenZeppelin’s access control for user verification.
+Comprehensive Ownership History: Track previous ownership details and transaction history for each property.
+Document Storage and property images with IPFS: Store property documents and property images securely on IPFS, allowing decentralized file management.
 Tech Stack
 Frontend: React vite, Javascript, Tailwind CSS, React, RainbowKit
 Backend: Solidity, Hardhat (for local blockchain deployment)
@@ -59,8 +41,7 @@ System Design Overview
 The GeoTrust architecture is modular, with a clear separation between the frontend, backend (smart contracts), and decentralized storage (IPFS):
 
 Frontend: Handles user interactions, data display, and wallet connections through RainbowKit and wagmi.
-Backend (Smart Contracts):
-ERC721 contracts for property tokenization.
+Backend (Smart Contracts):ERC721 contracts for property tokenization.
 Access control contracts for managing roles and permissions.
 IPFS: Secure storage of property images and documents linked to the tokenized land records.
 Installation
@@ -114,6 +95,7 @@ View Maps:
 
 Access Maps to view property locations and associated information visually.
 Smart Contract Design
+
 Property Ownership (ERC721):
 
 Each property is tokenized as a unique ERC721 token, representing ownership.
