@@ -1,3 +1,5 @@
+![WhatsApp Image 2024-10-31 at 9 40 24 PM](https://github.com/user-attachments/assets/ea2e5ad3-26af-47a1-9a43-a2069ef424af)
+
 GeoTrust: A Blockchain-Based Land Ownership Platform
 GeoTrust is a decentralized application (DApp) that leverages blockchain technology to streamline, secure, and verify land ownership transactions. Built with React vite, javascript, Tailwind CSS, wagmi, RainbowKit, and Solidity, GeoTrust aims to eliminate fraud, simplify the property transfer process, and improve transparency in land ownership.
 Table of Contents
