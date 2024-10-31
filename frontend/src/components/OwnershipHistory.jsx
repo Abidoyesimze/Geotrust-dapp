@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaSearch, FaFileContract } from 'react-icons/fa';
-import { GeotrustNftContract } from '../Constant';
+import { GeotrustContract } from '../Constant';
 import { useTransaction, useWriteContract } from 'wagmi';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -39,8 +39,9 @@ const OwnershipHistory = () => {
 
   const { 
     data: verifyData,
-    writeContract: verifyProperty,
-    isLoading: isWritePending 
+    writeContract: verifyLand,
+    isLoading: isWritePending ,
+    error
   } = useWriteContract();
 
   const handleVerification = async () => {
@@ -50,11 +51,11 @@ const OwnershipHistory = () => {
     }
   
     try {
-       verifyProperty({
-         address: GeotrustNftContract.address,
-         abi: GeotrustNftContract.abi,
+       verifyLand({
+         address: GeotrustContract.address,
+         abi: GeotrustContract.abi,
          functionName: 'verifyLand',
-         args: [BigInt(tokenId)],
+         args: [Number(tokenId)],
        });
        toast.success('Verification initiated! Waiting for confirmation...');
     } catch (error) {
@@ -63,6 +64,11 @@ const OwnershipHistory = () => {
     }
   };
 
+  useEffect(()=>{
+    if(error){
+      console.log(error)
+    }
+  },[error])
 
     return (
     <div className="bg-gray-100 min-h-screen py-10">
