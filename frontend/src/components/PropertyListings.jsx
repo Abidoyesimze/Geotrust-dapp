@@ -3,6 +3,8 @@ import { useAccount, useReadContract, useWriteContract } from 'wagmi';
 import { formatEther, parseEther } from 'viem';
 import CustomModal from './customModal';
 import { GeotrustContract } from '../Constant';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import { usePropertyRefresh } from './PropertyRefresh';
 
@@ -13,15 +15,17 @@ const PropertyListing = () => {
   const {refreshTrigger} = usePropertyRefresh();
   
   const { address } = useAccount();
-  const { writeAsync: buyLand } = useWriteContract();
+  const { writeContract: buyLand,error:buylandError } = useWriteContract();
 
   const { data: registeredData, propertiesData, refetch, error, isLoading } = useReadContract({
     address: GeotrustContract.address,
     abi: GeotrustContract.abi,
-    functionName: 'getAllRegisteredLands', // Function to get all registered lands
+    functionName: 'getAllRegisteredLands', 
     watch: true,
     args: [],
   });
+
+  console.log(registeredData)
   
   useEffect(() => {
     refetch();
@@ -42,16 +46,20 @@ const PropertyListing = () => {
     }
   }, [registeredData, error]);
 
-  const handleBuyProperty = async (property) => {
+  const handleBuyProperty = async (property,index) => {
+    console.log("clicked",property.price)
+    if (!property.isVerified) {
+      toast.error('Property is not verified yet. Please wait for admin verification.');
+      return;
+    }
+
     try {
-      await buyLand({
+      buyLand({
         address: GeotrustContract.address,
         abi: GeotrustContract.abi,
         functionName: 'buyLand', 
-        args: [property.owner], // Update to appropriate args if needed
-        overrides: {
-          value: parseEther(property.price.toString()), // Ensure price is in string format
-        },
+        args: [index], 
+        value: property.price, 
       });
       toast.success('Transaction submitted! Please wait for confirmation.');
     } catch (error) {
@@ -87,9 +95,17 @@ const PropertyListing = () => {
     setShowImageModal(true);
   };
 
+  useEffect(()=>{
+    if(buylandError){
+      toast.error(`Error buying property: ${buylandError.message}`)
+    }
+  },[buylandError])
+
   return (
     <div className="property-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+      <ToastContainer />
       {properties.map((property, index) => (
+      
         <div 
           key={index} 
           className="property-card bg-white rounded-lg shadow-lg overflow-hidden"
@@ -111,7 +127,7 @@ const PropertyListing = () => {
             {/* Show Buy Property button if user does not own the property */}
             {address?.toLowerCase() !== property.owner?.toLowerCase() && (
               <button
-                onClick={() => handleBuyProperty(property)}
+                onClick={() => handleBuyProperty(property,index+1)}
                 className="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors"
               >
                 Buy Property
